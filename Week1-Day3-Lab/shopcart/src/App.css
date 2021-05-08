@@ -1,0 +1,46 @@
+.App-header {
+  background-color: rgb(97, 185, 219);
+  color: black;
+  margin: auto;
+  padding: 3em;
+  min-height: 100px;
+}
+
+.shoppingCart{
+  float: right;
+  padding-right: 100px;
+  padding-top: 40px;
+  top: 15px;
+  right: 0px;
+  position: absolute;
+  display: flex;
+}
+
+.cartIcon{
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.GroupItem{
+  padding: 45px !important;
+  /* margin-left: 15px; */
+}
+
+.inputValue{
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.itemcontent{
+  display: flex;
+}
+
+.quantityDisplay{
+  display: flex;
+  padding: 70px;
+}
+
+.quantity{
+  padding: 16px 0 0 30px;
+}
