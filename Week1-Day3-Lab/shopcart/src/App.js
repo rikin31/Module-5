@@ -1,86 +1,46 @@
 import './App.css';
+import { Products } from "./Products";
+import Navbar from "./Navbar";
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"; 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Products: [
-        {
-          id: 1,
-          image: './products/cologne.jpg',
-          desc: 'Unisex Cologne',
-          value: 0,
-        },
-        { id: 2, 
-          image: './products/iwatch.jpg',
-          desc: 'Apple iWatch',
-          value: 0,
-        },
-        {
-          id: 3,
-          image: './products/mug.jpg',
-          desc: 'Unique Mug',
-          value: 0
-        },
-        {
-          id: 3,
-          image: './products/wallet.jpg',
-          desc: 'Mens Wallet',
-          value: 0
-        }
-      ]
+      ProductList : Products
     };
   }
- 
-  render(){
 
-    let ProductsContent = <ProContent shopitems={this.state.Products} />;
-    return ( 
-      {},
-
-      (
-        <div className="App">
-          <header className="App-header">
-            <h1 className="title">
-              Shop to React
-            </h1>
-            <div className="shoppingCart">
-              <FontAwesomeIcon icon={faShoppingCart} className="cartIcon"></FontAwesomeIcon>
-              <p>0 items</p>
-            </div>
-          </header>
-          {ProductsContent}
-        </div>
-      )
-    );
+  incrementValue = (item) => {
+    if(item.value < 10) {
+    const update = item.value++; 
+    this.setState({update});
+    }
   }
-}
 
-function ProContent(props){
+  decrementValue = (item) => {
+    if(item.value > 0){
+      const update = item.value--; 
+      this.setState({update});
+    }
+  }
 
-  return(
 
-    <ListGroup>
-      {props.shopitems.map((shopitem) => (
-        <ListGroupItem key={shopitem.id} className="GroupItem">
-          <h2>{shopitem.desc}</h2>
-          <div className="itemcontent">
-            <img src={shopitem.image} alt="Shopping Image" height={200} width={200}></img>
-            <div className="quantityDisplay">
-              <input type="text" placeholder={shopitem.value} className="inputValue"></input>
-              <p className="quantity">quantity</p>
-            </div>
-          </div>
-        </ListGroupItem>
-      ))}
-    </ListGroup>
-
-  );
+  render() {
+    return ( {},(
+      <div className="App">
+        <Navbar 
+          totalValue = {this.state.ProductList.map((item) => item.value).reduce((acc, sum)=> acc + sum, 0)}
+          totalItems={this.state.ProductList}
+          incrementValue={this.incrementValue}
+          decrementValue={this.decrementValue}
+        />      
+      </div>           
+    ));
+  }
 }
 
 export default App;
