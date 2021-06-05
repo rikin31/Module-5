@@ -1,3 +1,4 @@
+
 import './App.css';
 import { Products } from "./Products";
 import Navbar from "./Navbar";
@@ -10,9 +11,35 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ProductList : Products
-    };
+      ProductList : Products,
+      listNum: "",
+      sortType:""
+    }
   }
+
+  onSort = (listNum, sortType) => {
+    switch (sortType) {
+      case "def":
+        listNum.sort((a, b) => {
+          return a.id - b.id;
+        });
+        break;
+      case "desc":
+        listNum.sort((a, b) => {
+          return b.price - a.price;
+        });
+        break;
+      case "asc":
+        listNum.sort((a, b) => {
+          return a.price - b.price;
+        });
+        break;
+        default:
+        break;
+    }
+    this.setState({ sortType });
+  }
+
 
   incrementValue = (item) => {
     if(item.value < 10) {
@@ -37,6 +64,9 @@ class App extends Component {
           totalItems={this.state.ProductList}
           incrementValue={this.incrementValue}
           decrementValue={this.decrementValue}
+          sortType={this.state.sortType} 
+          listNum={this.state.listNum} 
+          onSort={this.onSort}
         />      
       </div>           
     ));

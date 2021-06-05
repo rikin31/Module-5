@@ -18,7 +18,7 @@ function Navbar(props) {
 
                 <h1 className="col topheading">
                 <Link to="/">   Shop 2 
-                <FontAwesomeIcon icon={faRegistered}></FontAwesomeIcon>eact </Link>
+                <FontAwesomeIcon icon={faRegistered}></FontAwesomeIcon> eact </Link>
                 </h1>
                 <div className="col icon">
                     <Link to="/Cart" > <FontAwesomeIcon icon={faShoppingCart} /> 
@@ -32,7 +32,10 @@ function Navbar(props) {
                     <DisplayProducts 
                         Products={props.totalItems} 
                         incrementValue={props.incrementValue} 
-                        decrementValue={props.decrementValue}/> 
+                        decrementValue={props.decrementValue}
+                        sortType={props.sortType} 
+                        listNum={props.listNum}
+                        onSort={props.onSort}/> 
                     </Route>
                     <Route path="/Cart">
                         <Cart totalItems={props.totalItems} totalValue={props.totalValue}/>
